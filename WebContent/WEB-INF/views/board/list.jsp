@@ -5,10 +5,17 @@
 	pageEncoding="UTF-8"%>
 <%
 	List<BoardVo> list = (List<BoardVo>) request.getAttribute("list");
-%>
-
-<%
 	UserVo authUser = (UserVo) session.getAttribute("authUser");
+	int pageNum = Integer.parseInt(request.getParameter("pageNum"));
+	int pageCount = (Integer) (request.getAttribute("pageCount"));
+	int k = (((pageNum - 1) / 5) * 5) + 1;
+
+	int content_Count = (Integer) (request.getAttribute("content_Count"));
+	int maxPage = (content_Count / pageCount) + 1; //전체 필요한 페이지 개수
+	int maxPage_2 = maxPage;
+	if (maxPage > k + 5) {
+		maxPage = k + 5;
+	}
 %>
 
 
@@ -16,6 +23,11 @@
 <html>
 <head>
 <title>mysite</title>
+<style>
+a {
+	text-decoration: none
+}
+</style>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="/mysite/assets/css/board.css" rel="stylesheet"
 	type="text/css">
@@ -57,13 +69,10 @@
 						<td><%=vo.getReg_date()%></td>
 						<td>
 							<%
-								try {
-										if (vo.getUser_no() == authUser.getNo()) {
+								if (authUser != null && vo.getUser_no() == authUser.getNo()) {
 							%> <a href="/mysite/board?a=delete&no=<%=vo.getNo()%>"
 							class="del">삭제</a> <%
  	}
- 		} catch (NullPointerException e) {
- 		}
  %>
 						</td>
 					</tr>
@@ -71,8 +80,60 @@
 						}
 					%>
 				</table>
+				<!--  페이지 관리 -->
 
+				<center>
+					<h2>
+						<%
+							if (k != 1) {
+						%>
+						<a href="/mysite/board?a=list&pageNum=<%=k - 1%>">◀</a>
+						<%
+							} else {
+						%>
+						◀
+						<%
+							}
+						%>
+						<%
+							for (int i = k; i < maxPage; i++) {
+						%>
 
+						<a href="/mysite/board?a=list&pageNum=<%=i%>"> <%=i%>
+						</a>
+
+						<%
+							}
+
+							for (int i = maxPage; i < k + 5; i++) {
+								if (maxPage > k) {
+						%>
+						<%=i%>
+						</a>
+
+						<%
+							}
+						%>
+						<%
+							}
+						%>
+
+						<%
+							if (maxPage_2 > maxPage) {
+						%>
+						<a href="/mysite/board?a=list&pageNum=<%=k + 5%>">▶</a>
+						<%
+							} else {
+						%>
+						▶
+						<%
+							}
+						%>
+
+					</h2>
+				</center>
+
+				<!--  페이지 관리 -->
 				<div class="bottom">
 					<a href="/mysite/board?a=writeform&group=0&order=1&depth=1"
 						id="new-book">글쓰기</a>
