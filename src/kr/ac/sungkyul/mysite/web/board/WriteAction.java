@@ -35,6 +35,13 @@ public class WriteAction implements Action {
 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
+
+		Long group = Long.parseLong(request.getParameter("group"));
+		Long order_no = Long.parseLong(request.getParameter("order"));
+		Long depth = Long.parseLong(request.getParameter("depth"));
+
+		System.out.println(order_no + " " + depth);
+
 		Long user_no = authUser.getNo();
 
 		BoardVo vo = new BoardVo();
@@ -42,8 +49,11 @@ public class WriteAction implements Action {
 
 		vo.setTitle(title);
 		vo.setContent(content);
+		vo.setGroup_no(group);
 		vo.setUser_no(user_no);
-
+		vo.setOrder_no(order_no);
+		vo.setDepth(depth);
+		
 		dao.insert(vo);
 
 		WebUtil.redirect("/mysite/board?a=list", request, response);

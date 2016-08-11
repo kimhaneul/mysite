@@ -21,6 +21,8 @@ public class ViewAction implements Action {
 		BoardDao dao = new BoardDao();
 
 		BoardVo vovo = dao.view(no);
+		dao.updateViewCount(no);
+		
 		request.setAttribute("vovo", vovo);
 
 		WebUtil.forward("/WEB-INF/views/board/view.jsp", request, response);

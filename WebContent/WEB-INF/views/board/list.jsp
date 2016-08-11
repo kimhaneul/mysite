@@ -1,9 +1,14 @@
 <%@page import="kr.ac.sungkyul.mysite.vo.BoardVo"%>
+<%@page import="kr.ac.sungkyul.mysite.vo.UserVo"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
 	List<BoardVo> list = (List<BoardVo>) request.getAttribute("list");
+%>
+
+<%
+	UserVo authUser = (UserVo) session.getAttribute("authUser");
 %>
 
 
@@ -40,19 +45,37 @@
 					%>
 					<tr>
 						<td><%=vo.getNo()%></td>
-						<td><a href="/mysite/board?a=view&no=<%=vo.getNo()%>"><%=vo.getTitle()%></a></td>
+						<td>
+							<%
+								for (int i = 1; i < vo.getDepth(); i++) {
+							%> ↳ <%
+								}
+							%> <a href="/mysite/board?a=view&no=<%=vo.getNo()%>"><%=vo.getTitle()%></a>
+						</td>
 						<td><%=vo.getUser_name()%></td>
 						<td><%=vo.getView_count()%></td>
-						<td><%=vo.getReg_date() %></td>
-						<td><a href="" class="del">삭제</a></td>
+						<td><%=vo.getReg_date()%></td>
+						<td>
+							<%
+								try {
+										if (vo.getUser_no() == authUser.getNo()) {
+							%> <a href="/mysite/board?a=delete&no=<%=vo.getNo()%>"
+							class="del">삭제</a> <%
+ 	}
+ 		} catch (NullPointerException e) {
+ 		}
+ %>
+						</td>
 					</tr>
 					<%
 						}
 					%>
-
 				</table>
+
+
 				<div class="bottom">
-					<a href="/mysite/board?a=writeform" id="new-book">글쓰기</a>
+					<a href="/mysite/board?a=writeform&group=0&order=1&depth=1"
+						id="new-book">글쓰기</a>
 				</div>
 			</div>
 		</div>

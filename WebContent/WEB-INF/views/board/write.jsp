@@ -16,7 +16,12 @@
 		<div id="content">
 			<div id="board">
 				<form class="board-form" method="post" action="/mysite/board">
-					<input type="hidden" name="a" value="write">
+					<input type="hidden" name="a" value="write"> <input
+						type="hidden" name="order"
+						value="<%=request.getParameter("order")%>"> 
+						
+						<input type="hidden" name="depth" value="<%=request.getParameter("depth")%>">
+						<input type="hidden" name="group" value="<%=request.getParameter("group")%>">
 					<table class="tbl-ex">
 						<tr>
 							<th colspan="2">글쓰기</th>

@@ -42,8 +42,13 @@
 						</td>
 					</tr>
 				</table>
-				<div class="bottom"> 	
-					<a href="/mysite/board?a=list">글목록</a> <a href="/mysite/board?a=modifyForm&no=<%=vo.getNo()%>">글수정</a>
+				<div class="bottom">
+					<a href="/mysite/board?a=list">글목록</a> <a
+						href="/mysite/board?a=modifyForm&no=<%=vo.getNo()%>">글수정</a> 
+						
+						
+						<a href="/mysite/board?a=writeform&group=<%=vo.getGroup_no()%>&order=<%=vo.getOrder_no()%>&depth=<%=vo.getDepth()+1L%>"> 답글</a>
+
 				</div>
 			</div>
 		</div>

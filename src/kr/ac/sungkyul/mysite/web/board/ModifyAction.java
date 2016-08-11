@@ -17,7 +17,6 @@ public class ModifyAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("11111111111111111111111111111");
 		Long no = Long.parseLong(request.getParameter("no"));
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
@@ -28,8 +27,6 @@ public class ModifyAction implements Action {
 		vo.setNo(no);
 		vo.setTitle(title);
 		vo.setContent(content);
-
-		System.out.println(vo);
 
 		dao.modify(vo);
 

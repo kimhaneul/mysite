@@ -7,9 +7,9 @@ public class BoardVo {
 	private String title;
 	private String content;
 	private int view_count;
-	private int group_no;
-	private int order_no;
-	private int depth;
+	private Long group_no;
+	private Long order_no;
+	private Long depth;
 	private long user_no;
 	private String reg_date;
 	private String User_name;
@@ -38,22 +38,22 @@ public class BoardVo {
 	public void setView_count(int view_count) {
 		this.view_count = view_count;
 	}
-	public int getGroup_no() {
+	public Long getGroup_no() {
 		return group_no;
 	}
-	public void setGroup_no(int group_no) {
+	public void setGroup_no(Long group_no) {
 		this.group_no = group_no;
 	}
-	public int getOrder_no() {
+	public Long getOrder_no() {
 		return order_no;
 	}
-	public void setOrder_no(int order_no) {
+	public void setOrder_no(Long order_no) {
 		this.order_no = order_no;
 	}
-	public int getDepth() {
+	public Long getDepth() {
 		return depth;
 	}
-	public void setDepth(int depth) {
+	public void setDepth(Long depth) {
 		this.depth = depth;
 	}
 	public long getUser_no() {

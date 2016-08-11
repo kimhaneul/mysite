@@ -22,8 +22,8 @@
 		<div id="content">
 			<div id="board">
 				<form class="board-form" method="post" action="/mysite/board">
-					<input type="hidden" name="a" value="modify&no=<%=vo.getNo()%>">
-
+					<input type="hidden" name="a" value="modify"> <input
+						type="hidden" name="no" value="<%=vo.getNo()%>">
 					<table class="tbl-ex">
 						<tr>
 							<th colspan="2">글수정</th>
@@ -40,8 +40,8 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="/mysite/board?a=view&no=<%=vo.getNo()%>">취소</a>
-						<input type="submit" value="수정">
+						<a href="/mysite/board?a=view&no=<%=vo.getNo()%>">취소</a> <input
+							type="submit" value="수정">
 					</div>
 				</form>
 			</div>
