@@ -18,7 +18,7 @@ public class BoardAction implements Action {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		int pageCount = 1; // 페이지에 표시할 게시글 개수
+		int pageCount = 5; // 페이지에 표시할 게시글 개수
 		int pageNum = Integer.parseInt((request.getParameter("pageNum"))); // 페이지 번호
 
 		BoardDao dao = new BoardDao();
@@ -27,14 +27,9 @@ public class BoardAction implements Action {
 		list = dao.getList(pageNum, pageCount);
 		int content_Count = dao.get_Ccontent_Count();
 
-		System.out.println("content_Count " + content_Count);
-		System.out.println("pageCount " + pageCount);
-		
-
 		request.setAttribute("list", list);
 		request.setAttribute("content_Count", content_Count);
 		request.setAttribute("pageCount", pageCount);
-
 		WebUtil.forward("/WEB-INF/views/board/list.jsp", request, response);
 	}
 

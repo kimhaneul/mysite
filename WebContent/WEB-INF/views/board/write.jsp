@@ -16,7 +16,8 @@
 		<div id="content">
 			<div id="board">
 				<form class="board-form" method="post" action="/mysite/board">
-					<input type="hidden" name="a" value="write"> <input
+					<input type="hidden" name="a" value="write"> 
+					<input
 						type="hidden" name="order"
 						value="<%=request.getParameter("order")%>"> 
 						
@@ -36,7 +37,7 @@
 						</tr>
 					</table>
 					<div class="bottom">
-						<a href="/mysite/board">취소</a> <input type="submit" value="등록">
+						<a href="javascript:history.back(-1);">취소</a> <input type="submit" value="등록">
 					</div>
 				</form>
 			</div>

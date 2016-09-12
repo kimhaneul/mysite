@@ -11,11 +11,7 @@
 	int k = (((pageNum - 1) / 5) * 5) + 1;
 
 	int content_Count = (Integer) (request.getAttribute("content_Count"));
-	int maxPage = (content_Count / pageCount) + 1; //전체 필요한 페이지 개수
-	int maxPage_2 = maxPage;
-	if (maxPage > k + 5) {
-		maxPage = k + 5;
-	}
+	int maxPage = ((content_Count - 1) / pageCount) + 1; //전체 필요한 페이지 개수
 %>
 
 
@@ -39,7 +35,7 @@ a {
 		<div id="content">
 			<div id="board">
 				<form id="search_form" action="" method="post">
-					<input type="text" id="kwd" name="kwd" value=""> <input
+					<input type="text" id="search" name="search" value=""> <input
 						type="submit" value="찾기">
 				</form>
 				<table class="tbl-ex">
@@ -96,17 +92,20 @@ a {
 							}
 						%>
 						<%
-							for (int i = k; i < maxPage; i++) {
+							for (int i = k; i < k + 5; i++) {
 						%>
-
+						<%
+							if (maxPage >= i) {
+						%>
 						<a href="/mysite/board?a=list&pageNum=<%=i%>"> <%=i%>
 						</a>
 
 						<%
 							}
+							}
 
-							for (int i = maxPage; i < k + 5; i++) {
-								if (maxPage > k) {
+							for (int i = k; i < k + 5; i++) {
+								if (maxPage < i) {
 						%>
 						<%=i%>
 						</a>
@@ -119,7 +118,7 @@ a {
 						%>
 
 						<%
-							if (maxPage_2 > maxPage) {
+							if (maxPage >= k + 5) {
 						%>
 						<a href="/mysite/board?a=list&pageNum=<%=k + 5%>">▶</a>
 						<%
@@ -132,6 +131,18 @@ a {
 
 					</h2>
 				</center>
+
+				maxPage =
+				<%=maxPage%>
+
+				maxPage =
+				<%=maxPage%>
+
+				k =
+				<%=k%>
+
+				pageNum =
+				<%=pageNum%>
 
 				<!--  페이지 관리 -->
 				<div class="bottom">

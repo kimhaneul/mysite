@@ -43,7 +43,7 @@
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="/mysite/board?a=list">글목록</a> <a
+					<a href="javascript:history.back(-1);">글목록</a> <a
 						href="/mysite/board?a=modifyForm&no=<%=vo.getNo()%>">글수정</a> 
 						
 						

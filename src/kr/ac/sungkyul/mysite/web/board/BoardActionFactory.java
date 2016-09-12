@@ -8,7 +8,7 @@ public class BoardActionFactory extends ActionFactory {
 	@Override
 	public Action getAction(String actionName) {
 		// TODO Auto-generated method stub
-
+	
 		Action action = null;
 		if ("list".equals(actionName)) { // 게시판
 			action = new BoardAction();
@@ -24,6 +24,8 @@ public class BoardActionFactory extends ActionFactory {
 			action = new ModifyAction();
 		}else if ("delete".equals(actionName)){
 			action = new DeleteAction();
+		}else if ("search".equals(actionName)){
+			action = new SearchAction();
 		}
 		else {
 			action = new BoardAction();

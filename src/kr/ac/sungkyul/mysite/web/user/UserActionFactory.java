@@ -28,11 +28,11 @@ public class UserActionFactory extends ActionFactory {
 			action = new ModifyAction();
 		} else if ("board".equals(actionName)) { // 게시판
 			action = new BoardAction();
-		} else if ("write".equals(actionName)) { //방명록
+		} else if ("write".equals(actionName)) { // 방명록
 			action = new WriteAction();
-		}
-
-		else {
+		} else if ("emailcheck".equals(actionName)) { // 이메일체크
+			action = new CheckEmailAction();
+		} else {
 			action = new MainAction();
 		}
 
